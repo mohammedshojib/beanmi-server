@@ -45,6 +45,7 @@ async function run() {
     const userCollection = client.db("Beanmi").collection("users");
     const ordersCollection = client.db("Beanmi").collection("orders");
     const courseCollection = client.db("Beanmi").collection("course");
+    const videosCollection = client.db("Beanmi").collection("videos");
 
     //<===== AUTH ====>
 
@@ -68,6 +69,13 @@ async function run() {
       const query = {};
       const orders = await ordersCollection.find(query).toArray();
       res.send(orders);
+    });
+    // <<===ALL Orders===>
+
+    app.get("/videos", async (req, res) => {
+      const query = {};
+      const videos = await videosCollection.find(query).toArray();
+      res.send(videos);
     });
     // <<<=====add money=====>>>
     app.put("/update/:email", async (req, res) => {
